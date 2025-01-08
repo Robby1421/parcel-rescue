@@ -176,11 +176,9 @@ elif rescue_choice == "Track Parcel by ID":
             st.warning("No parcel found with the provided ID.")
 
 elif rescue_choice == "Analyze Buyer Type":
-    if 'Delivery Status' in parcel_data.columns:
+    if 'Buyer Type' in parcel_data.columns:
         status_counts = parcel_data['Buyer Type'].value_counts()
         st.write("### Parcel Status Distribution")
         st.bar_chart(status_counts)
     else:
         st.error("The dataset does not have a 'Buyer Type' column.")
-    else:
-        st.error("Parcel data file not found. Please upload the correct file.")
