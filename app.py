@@ -176,7 +176,13 @@ elif rescue_choice == "Track Parcel by ID":
             st.warning("No parcel found with the provided ID.")
 
 elif rescue_choice == "Track Parcel by ID":
-    parcel_id = st.text_input("Enter Parcel ID")
+    # parcel_id = st.text_input("Enter Parcel ID")
+    # # Using text_input to get user input
+    user_input = st.text_input("Enter some text:")
+
+    # Display the input text
+    if user_input:
+        st.write(f"You entered: {user_input}")
     if parcel_id:
         tracked_parcel = parcel_data[parcel_data['Parcel ID'] == parcel_id]
         if not tracked_parcel.empty:
