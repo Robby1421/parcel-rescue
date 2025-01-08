@@ -154,15 +154,17 @@ elif options == "Rescue Parcel":
 
         rescue_choice = st.selectbox("Choose an operation", ["Identify Defected Parcels", "Track Parcel by ID", "Analyze Parcel Status"])
 
-        if rescue_choice == "Identify Delayed Parcels":
-            if 'Delivery Status' in parcel_data.columns and 'Expected Delivery Date' in parcel_data.columns:
-                defect_type = st.text_input("Enter Defect Type")
-                delayed_parcels = parcel_data[(parcel_data['Defect Type'] == defect_type]
-                st.write("### Defected Parcels")
-                st.dataframe(delayed_parcels)
-            else:
-                st.error("The dataset does not have the required columns.")
+        elif rescue_choice == "Identify Defected Parcels":
+            defect = st.text_input("Enter Defect Type")
+            if parcel_id:
+                tracked_parcel = parcel_data[parcel_data['Defect Type'] == defect]
+                if not tracked_parcel.empty:
+                    st.write("### Parcel Details")
+                    st.dataframe(tracked_parcel)
+                else:
+                    st.warning("No parcel found with the provided ID.")
 
+        
         elif rescue_choice == "Track Parcel by ID":
             parcel_id = st.text_input("Enter Parcel ID")
             if parcel_id:
