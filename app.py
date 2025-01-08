@@ -37,7 +37,7 @@ with st.sidebar:
 
     options = option_menu(
         "Dashboard",
-        ["Home", "About Me", "Parcel Management"],
+        ["Home", "About Me", "Parcel Management", "Rescue Parcel"],
         # icons=['book', 'globe', 'shopping cart'],
         menu_icon="book",
         default_index=0,
@@ -139,46 +139,46 @@ By following these guidelines, you will effectively support parcel management op
             st.markdown(response)
         st.session_state.messagess.append({"role": "assistant", "content": response})
 
-# # Options: Rescue Parcel
-# elif options == "Rescue Parcel":
-#     st.title("Rescue Parcel")
-#     st.write("This module helps in identifying and resolving issues related to delayed or misplaced parcels.")
+# Options: Rescue Parcel
+elif options == "Rescue Parcel":
+    st.title("Rescue Parcel")
+    st.write("This module helps in identifying and resolving issues related to delayed or misplaced parcels.")
 
-#     uploaded_file = 'ParcelRescue.xlsx'  # Replace with dynamic handling if required
+    uploaded_file = 'ParcelRescue.xlsx'  # Replace with dynamic handling if required
 
-#     if os.path.exists(uploaded_file):
-#         parcel_data = pd.read_excel(uploaded_file)
+    if os.path.exists(uploaded_file):
+        parcel_data = pd.read_excel(uploaded_file)
 
-#         st.write("### Uploaded Parcel Data")
-#         st.dataframe(parcel_data.head())
+        st.write("### Uploaded Parcel Data")
+        st.dataframe(parcel_data.head())
 
-#         rescue_choice = st.selectbox("Choose an operation", ["Identify Defected Parcels", "Track Parcel by ID", "Analyze Buyer Type"])
+        rescue_choice = st.selectbox("Choose an operation", ["Identify Defected Parcels", "Track Parcel by ID", "Analyze Buyer Type"])
 
-# elif rescue_choice == "Identify Defected Parcels":
-#     defect = st.text_input("Enter Defect Type")
-#     if parcel_id:
-#         tracked_parcel = parcel_data[parcel_data['Defect Type'] == defect]
-#         if not tracked_parcel.empty:
-#             st.write("### Parcel Details")
-#             st.dataframe(tracked_parcel)
-#         else:
-#             st.warning("No parcel found with the provided ID.")
+elif rescue_choice == "Identify Defected Parcels":
+    defect = st.text_input("Enter Defect Type")
+    if parcel_id:
+        tracked_parcel = parcel_data[parcel_data['Defect Type'] == defect]
+        if not tracked_parcel.empty:
+            st.write("### Parcel Details")
+            st.dataframe(tracked_parcel)
+        else:
+            st.warning("No parcel found with the provided ID.")
 
         
-# elif rescue_choice == "Track Parcel by ID":
-#     parcel_id = st.text_input("Enter Parcel ID")
-#     if parcel_id:
-#         tracked_parcel = parcel_data[parcel_data['Parcel ID'] == parcel_id]
-#         if not tracked_parcel.empty:
-#             st.write("### Parcel Details")
-#             st.dataframe(tracked_parcel)
-#         else:
-#             st.warning("No parcel found with the provided ID.")
+elif rescue_choice == "Track Parcel by ID":
+    parcel_id = st.text_input("Enter Parcel ID")
+    if parcel_id:
+        tracked_parcel = parcel_data[parcel_data['Parcel ID'] == parcel_id]
+        if not tracked_parcel.empty:
+            st.write("### Parcel Details")
+            st.dataframe(tracked_parcel)
+        else:
+            st.warning("No parcel found with the provided ID.")
 
-# elif rescue_choice == "Analyze Buyer Type":
-#     if 'Buyer Type' in parcel_data.columns:
-#         status_counts = parcel_data['Buyer Type'].value_counts()
-#         st.write("### Parcel Status Distribution")
-#         st.bar_chart(status_counts)
-#     else:
-#         st.error("The dataset does not have a 'Buyer Type' column.")
+elif rescue_choice == "Analyze Buyer Type":
+    if 'Buyer Type' in parcel_data.columns:
+        status_counts = parcel_data['Buyer Type'].value_counts()
+        st.write("### Parcel Status Distribution")
+        st.bar_chart(status_counts)
+    else:
+        st.error("The dataset does not have a 'Buyer Type' column.")
