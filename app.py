@@ -154,15 +154,15 @@ elif options == "Rescue Parcel":
 
         rescue_choice = st.selectbox("Choose an operation", ["Identify Defected Parcels", "Track Parcel by ID", "Analyze Parcel Status"])
 
-        elif rescue_choice == "Identify Defected Parcels":
-            defect = st.text_input("Enter Defect Type")
-            if parcel_id:
-                tracked_parcel = parcel_data[parcel_data['Defect Type'] == defect]
-                if not tracked_parcel.empty:
-                    st.write("### Parcel Details")
-                    st.dataframe(tracked_parcel)
-                else:
-                    st.warning("No parcel found with the provided ID.")
+elif rescue_choice == "Identify Defected Parcels":
+    defect = st.text_input("Enter Defect Type")
+    if parcel_id:
+        tracked_parcel = parcel_data[parcel_data['Defect Type'] == defect]
+        if not tracked_parcel.empty:
+            st.write("### Parcel Details")
+            st.dataframe(tracked_parcel)
+        else:
+            st.warning("No parcel found with the provided ID.")
 
         
         elif rescue_choice == "Track Parcel by ID":
