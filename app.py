@@ -152,12 +152,13 @@ elif options == "Rescue Parcel":
         st.write("### Uploaded Parcel Data")
         st.dataframe(parcel_data.head())
 
-        rescue_choice = st.selectbox("Choose an operation", ["Identify Delayed Parcels", "Track Parcel by ID", "Analyze Parcel Status"])
+        rescue_choice = st.selectbox("Choose an operation", ["Identify Defected Parcels", "Track Parcel by ID", "Analyze Parcel Status"])
 
         if rescue_choice == "Identify Delayed Parcels":
             if 'Delivery Status' in parcel_data.columns and 'Expected Delivery Date' in parcel_data.columns:
-                delayed_parcels = parcel_data[(parcel_data['Delivery Status'] != 'Delivered') & (parcel_data['Expected Delivery Date'] < pd.Timestamp.now())]
-                st.write("### Delayed Parcels")
+                defect_type = st.text_input("Enter Defect Type")
+                delayed_parcels = parcel_data[(parcel_data['Defect Type'] == defect_type]
+                st.write("### Defected Parcels")
                 st.dataframe(delayed_parcels)
             else:
                 st.error("The dataset does not have the required columns.")
