@@ -165,22 +165,22 @@ elif rescue_choice == "Identify Defected Parcels":
             st.warning("No parcel found with the provided ID.")
 
         
-        elif rescue_choice == "Track Parcel by ID":
-            parcel_id = st.text_input("Enter Parcel ID")
-            if parcel_id:
-                tracked_parcel = parcel_data[parcel_data['Parcel ID'] == parcel_id]
-                if not tracked_parcel.empty:
-                    st.write("### Parcel Details")
-                    st.dataframe(tracked_parcel)
-                else:
-                    st.warning("No parcel found with the provided ID.")
+elif rescue_choice == "Track Parcel by ID":
+    parcel_id = st.text_input("Enter Parcel ID")
+    if parcel_id:
+        tracked_parcel = parcel_data[parcel_data['Parcel ID'] == parcel_id]
+        if not tracked_parcel.empty:
+            st.write("### Parcel Details")
+            st.dataframe(tracked_parcel)
+        else:
+            st.warning("No parcel found with the provided ID.")
 
-        elif rescue_choice == "Analyze Parcel Status":
-            if 'Delivery Status' in parcel_data.columns:
-                status_counts = parcel_data['Delivery Status'].value_counts()
-                st.write("### Parcel Status Distribution")
-                st.bar_chart(status_counts)
-            else:
-                st.error("The dataset does not have a 'Delivery Status' column.")
+elif rescue_choice == "Analyze Parcel Status":
+    if 'Delivery Status' in parcel_data.columns:
+        status_counts = parcel_data['Delivery Status'].value_counts()
+        st.write("### Parcel Status Distribution")
+        st.bar_chart(status_counts)
     else:
-        st.error("Parcel data file not found. Please upload the correct file.")
+        st.error("The dataset does not have a 'Delivery Status' column.")
+    else:
+    st.error("Parcel data file not found. Please upload the correct file.")
