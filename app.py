@@ -70,8 +70,7 @@ elif options == "About Me":
 
 # Options: Parcel Management
 elif options == "Parcel Management":
-    file_path = 'https://github.com/Robby1421/parcel-rescue/blob/main/ParcelRescue.xlsx'
-    dataframed = pd.read_excel(file_path, sheet_name="Sheet1", engine="openpyxl")
+    dataframed = pd.read_excel("ParcelRescue.xlsx", engine="openpyxl")
     dataframed['combined'] = dataframed.apply(lambda row: ' '.join(row.values.astype(str)), axis=1)
     documents = dataframed['combined'].tolist()
     embeddings = [get_embedding(doc, engine="text-embedding-3-small") for doc in documents]
