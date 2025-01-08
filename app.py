@@ -23,7 +23,7 @@ warnings.filterwarnings("ignore")
 st.set_page_config(page_title="ParcelRescue: Your AI Solution for Parcel Management", page_icon="", layout="wide")
 
 with st.sidebar:
-    st.image('Day4/images/invytrack.png')
+    #st.image(' ')
     openai.api_key = st.text_input('Enter OpenAI API token:', type='password')
     if not (openai.api_key.startswith('sk-') and len(openai.api_key) == 164):
         st.warning('Please enter your OpenAI API token!', icon='⚠️')
@@ -63,7 +63,6 @@ if options == "Home":
 elif options == "About Me":
     st.title("About Me")
     st.write("# Robby Jean Pombo")
-    st.image('Day4/images/vanie.png')
     st.write("## AI Engineer at Accenture Philippines")
     st.text("Connect with me via Linkedin : https://www.linkedin.com/in/robbyjeanpombo/")
     st.text("Github : https://github.com/robby1421/")
@@ -71,7 +70,7 @@ elif options == "About Me":
 
 # Options: Parcel Management
 elif options == "Parcel Management":
-    dataframed = pd.read_csv('')
+    dataframed = pd.read_excel('https://github.com/Robby1421/parcel-rescue/blob/main/ParcelRescue.xlsx')
     dataframed['combined'] = dataframed.apply(lambda row: ' '.join(row.values.astype(str)), axis=1)
     documents = dataframed['combined'].tolist()
     embeddings = [get_embedding(doc, engine="text-embedding-3-small") for doc in documents]
