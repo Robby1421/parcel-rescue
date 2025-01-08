@@ -175,6 +175,16 @@ elif rescue_choice == "Track Parcel by ID":
         else:
             st.warning("No parcel found with the provided ID.")
 
+elif rescue_choice == "Track Parcel by ID":
+    parcel_id = st.text_input("Enter Parcel ID")
+    if parcel_id:
+        tracked_parcel = parcel_data[parcel_data['Parcel ID'] == parcel_id]
+        if not tracked_parcel.empty:
+            st.write("### Parcel Details")
+            st.dataframe(tracked_parcel)
+        else:
+            st.warning("No parcel found with the provided ID.")
+
 elif rescue_choice == "Analyze Buyer Type":
     if 'Buyer Type' in parcel_data.columns:
         status_counts = parcel_data['Buyer Type'].value_counts()
