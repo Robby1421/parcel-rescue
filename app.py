@@ -69,7 +69,7 @@ elif options == "About Me":
     st.write("\n")
 
 # Options: Parcel Management
-elif options == "Parcel Management":
+elif options == "📦 Parcel Management":
     dataframed = pd.read_excel("ParcelRescue.xlsx", engine="openpyxl")
     dataframed['combined'] = dataframed.apply(lambda row: ' '.join(row.values.astype(str)), axis=1)
     documents = dataframed['combined'].tolist()
@@ -141,7 +141,7 @@ By following these guidelines, you will effectively support parcel management op
 
 # Options: Rescue Parcel
 elif options == "Rescue Parcel":
-    st.title("Rescue Parcel")
+    st.title("🚚 Rescue Parcel")
     st.write("This module helps in identifying and resolving issues related to delayed or misplaced parcels.")
 
     uploaded_file = '/mnt/data/ParcelRescue.xlsx'  # Replace with dynamic handling if required
